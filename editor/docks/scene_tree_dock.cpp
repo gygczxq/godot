@@ -77,6 +77,8 @@
 #include "scene/resources/style_box_flat.h"
 #include "servers/display/display_server.h"
 
+
+
 void SceneTreeDock::_nodes_drag_begin() {
 	pending_click_select = nullptr;
 	edited_object_at_drag_start = InspectorDock::get_inspector_singleton()->get_edited_object();
@@ -1640,6 +1642,14 @@ void SceneTreeDock::_tool_selected(int p_tool, bool p_confirm_override) {
 			scene_tree->get_scene_tree()->grab_focus(true);
 		} break;
 
+		case TOOL_CREATE_Sim_SCENE:
+		case TOOL_CREATE_Device_SCENE: {
+			Node *new_node = nullptr;
+			new_node = memnew(Node3D);
+
+		} break;
+		
+
 		default: {
 			if (p_tool >= EditorContextMenuPlugin::BASE_ID) {
 				EditorContextMenuPluginManager::get_singleton()->activate_custom_option(EditorContextMenuPlugin::CONTEXT_SLOT_SCENE_TREE, p_tool);
@@ -1741,6 +1751,20 @@ void SceneTreeDock::_notification(int p_what) {
 
 			beginner_node_shortcuts = memnew(VBoxContainer);
 			node_shortcuts->add_child(beginner_node_shortcuts);
+
+			button_device = memnew(Button);
+			beginner_node_shortcuts->add_child(button_device);
+			button_device->set_text(TTRC("Machine Component"));
+			button_device->set_button_icon(get_editor_theme_icon(SNAME("Node2D")));
+			button_device->connect(SceneStringName(pressed), callable_mp(this, &SceneTreeDock::_tool_selected).bind(TOOL_CREATE_Device_SCENE, false));
+
+			button_simscene = memnew(Button);
+			beginner_node_shortcuts->add_child(button_simscene);
+			button_simscene->set_text(TTRC("Sim Scene"));
+			button_simscene->set_button_icon(get_editor_theme_icon(SNAME("Node3D")));
+			button_simscene->connect(SceneStringName(pressed), callable_mp(this, &SceneTreeDock::_tool_selected).bind(TOOL_CREATE_Sim_SCENE, false));
+
+
 
 			button_2d = memnew(Button);
 			beginner_node_shortcuts->add_child(button_2d);

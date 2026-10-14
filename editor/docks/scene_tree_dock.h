@@ -96,6 +96,10 @@ class SceneTreeDock : public EditorDock {
 		TOOL_CENTER_PARENT,
 		TOOL_HIDE_FILTERED_OUT_PARENTS,
 		TOOL_ACCESSIBILITY_WARNINGS,
+		TOOL_CREATE_Device_SCENE,
+		TOOL_CREATE_Sim_SCENE,
+
+
 	};
 
 	enum {
@@ -131,6 +135,12 @@ class SceneTreeDock : public EditorDock {
 	Button *button_ui = nullptr;
 	Button *button_custom = nullptr;
 	Button *button_clipboard = nullptr;
+#pragma region 自定义创建仿真场景按钮
+	Button *button_device = nullptr;
+	Button *button_simscene = nullptr;
+#pragma endregion
+
+
 
 	PanelContainer *button_panel = nullptr;
 	Button *edit_local, *edit_remote;
