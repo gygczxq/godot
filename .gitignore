@@ -237,7 +237,7 @@ xcuserdata/
 # Actual VS project files we don't use
 *.sln
 *.vcxproj*
-
+*.slnx
 # User-specific files
 *.rsuser
 *.suo
