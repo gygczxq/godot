@@ -1572,7 +1572,7 @@ ProjectManager::ProjectManager() {
 		title_bar_logo = memnew(Button);
 		title_bar_logo->set_flat(true);
 		title_bar_logo->set_tooltip_text(TTR("About Godot"));
-		left_hbox->add_child(title_bar_logo);
+		//left_hbox->add_child(title_bar_logo);
 		title_bar_logo->connect(SceneStringName(pressed), callable_mp(this, &ProjectManager::_show_about));
 
 		bool global_menu = !bool(EDITOR_GET("interface/editor/appearance/use_embedded_menu")) && NativeMenu::get_singleton()->has_feature(NativeMenu::FEATURE_GLOBAL_MENU);
@@ -1624,11 +1624,7 @@ ProjectManager::ProjectManager() {
 		right_hbox->set_stretch_ratio(1.0);
 		title_bar->add_child(right_hbox);
 
-		quick_settings_button = memnew(Button);
-		quick_settings_button->set_flat(true);
-		quick_settings_button->set_text(TTRC("Settings"));
-		right_hbox->add_child(quick_settings_button);
-		quick_settings_button->connect(SceneStringName(pressed), callable_mp(this, &ProjectManager::_show_quick_settings));
+		
 
 		if (can_expand) {
 			// Add spacer to avoid other controls under the window minimize/maximize/close buttons (right side).
@@ -1763,7 +1759,7 @@ ProjectManager::ProjectManager() {
 				empty_list_open_assetlib = memnew(Button);
 				empty_list_open_assetlib->set_text(TTRC("Open Asset Store"));
 				empty_list_open_assetlib->set_theme_type_variation("PanelBackgroundButton");
-				empty_list_actions->add_child(empty_list_open_assetlib);
+				//empty_list_actions->add_child(empty_list_open_assetlib);
 				empty_list_open_assetlib->connect(SceneStringName(pressed), callable_mp(this, &ProjectManager::_open_asset_library_confirmed));
 
 				empty_list_online_warning = memnew(Label);
@@ -1854,23 +1850,29 @@ ProjectManager::ProjectManager() {
 			donate_btn = memnew(Button);
 			donate_btn->set_text(TTRC("Donate"));
 			donate_btn->connect(SceneStringName(pressed), callable_mp(this, &ProjectManager::_open_donate_page));
-			project_list_sidebar->add_child(donate_btn);
+			//project_list_sidebar->add_child(donate_btn);
+			quick_settings_button = memnew(Button);
+			quick_settings_button->set_flat(true);
+			quick_settings_button->set_text(TTRC("Settings"));
+			//right_hbox->add_child(quick_settings_button);
+			quick_settings_button->connect(SceneStringName(pressed), callable_mp(this, &ProjectManager::_show_quick_settings));
+			project_list_sidebar->add_child(quick_settings_button);
 		}
 	}
 
 	// Asset store view.
-	if (AssetLibraryEditorPlugin::is_available()) {
-		asset_library = memnew(EditorAssetLibrary(true));
-		asset_library->set_name("AssetLibraryTab");
-		_add_main_view(MAIN_VIEW_ASSETLIB, TTRC("Asset Store"), Ref<Texture2D>(), asset_library);
-		asset_library->connect("install_asset", callable_mp(this, &ProjectManager::_install_project));
-	} else {
-		VBoxContainer *asset_library_filler = memnew(VBoxContainer);
-		asset_library_filler->set_name("AssetLibraryTab");
-		Button *asset_library_toggle = _add_main_view(MAIN_VIEW_ASSETLIB, TTRC("Asset Store"), Ref<Texture2D>(), asset_library_filler);
-		asset_library_toggle->set_disabled(true);
-		asset_library_toggle->set_tooltip_text(TTRC("Asset Store not available (due to using Web editor, or because SSL support disabled)."));
-	}
+	//if (AssetLibraryEditorPlugin::is_available() && false) {
+	//	asset_library = memnew(EditorAssetLibrary(true));
+	//	asset_library->set_name("AssetLibraryTab");
+	//	_add_main_view(MAIN_VIEW_ASSETLIB, TTRC("Asset Store"), Ref<Texture2D>(), asset_library);
+	//	asset_library->connect("install_asset", callable_mp(this, &ProjectManager::_install_project));
+	//} else {
+	//	VBoxContainer *asset_library_filler = memnew(VBoxContainer);
+	//	asset_library_filler->set_name("AssetLibraryTab");
+	//	Button *asset_library_toggle = _add_main_view(MAIN_VIEW_ASSETLIB, TTRC("Asset Store"), Ref<Texture2D>(), asset_library_filler);
+	//	asset_library_toggle->set_disabled(true);
+	//	asset_library_toggle->set_tooltip_text(TTRC("Asset Store not available (due to using Web editor, or because SSL support disabled)."));
+	//}
 
 	// Footer bar.
 	{
