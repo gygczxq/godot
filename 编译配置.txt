@@ -2,5 +2,5 @@ git clone https://gh.acmsz.top/https://github.com/gygczxq/godot.git
 
 
 //目前开发使用，若是发布版需要开启accesskit和angle提升性能
-scons platform=windows vsproj=yes dev-build=yes  accesskit=no angle=no
+scons platform=windows vsproj=yes dev_build=yes  accesskit=no angle=no
 dotnet sln godot.sln migrate
