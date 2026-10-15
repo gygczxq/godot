@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="FdComponent" inherits="Node3D" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+	<brief_description>
+		fdsim 仿真组件基类。
+	</brief_description>
+	<description>
+		继承 [Node3D]，在场景树中自带 3D 变换。作为仿真实体的功能组件基类，可挂在 [FdNode3D] 场景节点下，由具体仿真模块（运动学、动力学、传感器等）继续派生。
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="enabled" type="bool" setter="set_enabled" getter="is_enabled" default="true">
+			组件是否启用。
+		</member>
+	</members>
+</class>

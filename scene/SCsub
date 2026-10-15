@@ -15,6 +15,8 @@ if not env["disable_2d"]:
     SConscript("2d/SCsub")
 if not env["disable_3d"]:
     SConscript("3d/SCsub")
+# fdsim custom nodes (FdComponent / FdNode3D).
+SConscript("fd/SCsub")
 SConscript("animation/SCsub")
 SConscript("audio/SCsub")
 SConscript("resources/SCsub")

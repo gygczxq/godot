@@ -175,6 +175,12 @@
 #include "servers/display/display_server.h"
 #include "servers/rendering/rendering_server.h"
 
+// fdsim custom nodes.
+#include "scene/fd/fd_component.h"
+#include "scene/fd/fd_node_3d.h"
+#include "scene/fd/fd_path_3d.h"
+#include "scene/fd/fd_path_point.h"
+
 #ifndef DISABLE_DEPRECATED
 #include "scene/resources/animated_texture.h"
 #endif
@@ -448,6 +454,7 @@ void register_scene_types() {
 	OS::get_singleton()->yield(); // may take time to init
 
 	GDREGISTER_CLASS(Node);
+	GDREGISTER_CLASS(FdNode3D); // fdsim 场景节点（继承 Node）。
 	GDREGISTER_CLASS(MissingNode);
 	GDREGISTER_ABSTRACT_CLASS(InstancePlaceholder);
 
@@ -639,6 +646,9 @@ void register_scene_types() {
 
 #ifndef _3D_DISABLED
 	GDREGISTER_CLASS(Node3D);
+	GDREGISTER_CLASS(FdComponent); // fdsim 仿真组件（继承 Node3D）。
+	GDREGISTER_CLASS(FdPath3D); // fdsim 拟合路线（继承 FdComponent）。
+	GDREGISTER_CLASS(FdPathPoint); // fdsim 路线点（position + rotation）。
 	GDREGISTER_ABSTRACT_CLASS(Node3DGizmo);
 	GDREGISTER_CLASS(Skin);
 	GDREGISTER_ABSTRACT_CLASS(SkinReference);

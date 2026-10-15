@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="FdNode3D" inherits="Node" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+	<brief_description>
+		fdsim 场景节点（仿真实体根）。
+	</brief_description>
+	<description>
+		继承 [Node]（而非 [Node3D]），作为仿真实体的根节点，下面可挂载若干 [FdComponent] 仿真组件。使用 [method get_components] 可取得直接子组件列表。
+	</description>
+	<tutorials>
+	</tutorials>
+	<methods>
+		<method name="get_components" qualifiers="const">
+			<return type="TypedArray[FdComponent]" />
+			<description>
+				返回所有直接子节点中类型为 [FdComponent] 的组件。
+			</description>
+		</method>
+	</methods>
+</class>

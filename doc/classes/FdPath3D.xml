@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<class name="FdPath3D" inherits="FdComponent" api_type="core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../class.xsd">
+	<brief_description>
+		fdsim 拟合路线节点，参考 Path3D，每个点额外带旋转。
+	</brief_description>
+	<description>
+		继承 [FdComponent]。表示一条拟合出来的路线（参考 [Path3D] 的折线绘制），由一系列点组成，每个点包含位置（[member positions]）与旋转（[member rotations]，欧拉角，单位：度，YXZ 顺序）。相邻点之间用折线连接（Path3D 式）；每个点显示为 Marker3D 式十字（[constant DISPLAY_MARKER]）或指向姿态前向(-Z)的箭头（[constant DISPLAY_ARROW]），可通过 [member display_mode] 切换。
+	</description>
+	<tutorials>
+	</tutorials>
+	<members>
+		<member name="positions" type="PackedVector3Array" setter="set_positions" getter="get_positions">
+			各点位置。
+		</member>
+		<member name="rotations" type="PackedVector3Array" setter="set_rotations" getter="get_rotations">
+			各点欧拉角（度，YXZ 顺序）。
+		</member>
+		<member name="display_mode" type="int" setter="set_display_mode" getter="get_display_mode" enum="FdPath3D.DisplayMode" default="1">
+			点的显示方式：Marker3D 式十字或箭头。
+		</member>
+		<member name="marker_size" type="float" setter="set_marker_size" getter="get_marker_size" default="0.1">
+			十字模式下轴的半长（米）。
+		</member>
+		<member name="arrow_length" type="float" setter="set_arrow_length" getter="get_arrow_length" default="0.3">
+			箭头模式下箭头长度（米）。
+		</member>
+		<member name="show_route_line" type="bool" setter="set_show_route_line" getter="is_showing_route_line" default="true">
+			是否绘制连接各点的折线（Path3D 式）。
+		</member>
+		<member name="color" type="Color" setter="set_color" getter="get_color" default="Color(0.4, 0.9, 1, 1)">
+			路线与点的显示颜色。
+		</member>
+	</members>
+	<methods>
+		<method name="get_point_count" qualifiers="const">
+			<return type="int" />
+			<description>返回点数量。</description>
+		</method>
+		<method name="set_point_position">
+			<param index="0" name="idx" type="int" />
+			<param index="1" name="position" type="Vector3" />
+			<description>设置第 idx 个点的位置。</description>
+		</method>
+		<method name="get_point_position" qualifiers="const">
+			<return type="Vector3" />
+			<param index="0" name="idx" type="int" />
+			<description>返回第 idx 个点的位置。</description>
+		</method>
+		<method name="set_point_rotation">
+			<param index="0" name="idx" type="int" />
+			<param index="1" name="rotation" type="Vector3" />
+			<description>设置第 idx 个点的欧拉角（度）。</description>
+		</method>
+		<method name="get_point_rotation" qualifiers="const">
+			<return type="Vector3" />
+			<param index="0" name="idx" type="int" />
+			<description>返回第 idx 个点的欧拉角（度）。</description>
+		</method>
+		<method name="add_point">
+			<param index="0" name="position" type="Vector3" />
+			<param index="1" name="rotation" type="Vector3" />
+			<description>在末尾追加一个点（位置 + 欧拉角，度）。</description>
+		</method>
+		<method name="remove_point">
+			<param index="0" name="idx" type="int" />
+			<description>删除第 idx 个点。</description>
+		</method>
+		<method name="clear_points">
+			<description>清空所有点。</description>
+		</method>
+	</methods>
+</class>
